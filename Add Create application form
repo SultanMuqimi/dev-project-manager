@@ -1,0 +1,290 @@
+@model LogBook.Models.ApplicationsDetails
+
+@{
+    ViewData["Title"] = "Create Application";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Create Application</h1>
+    </div>
+
+    <div class="control-section">
+        <div class="control_wrapper">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <ejs-dropdownlist id="AppCatId"
+                                          dataSource="@ViewData["AppCatId"]"
+                                          asp-for="AppCatId"
+                                          fields="@ViewBag.fields"
+                                          cssClass="e-outline"
+                                          floatLabelType="Auto"
+                                          showClearButton="true"
+                                          placeholder="Select Category"></ejs-dropdownlist>
+                    </div>
+                    <div class="col-md-4">
+                       
+                        <ejs-dropdownlist id="OsTypeId"
+                                          dataSource="@ViewData["OsTypeId"]"
+                                          asp-for="OsTypeId"
+                                          fields="@ViewBag.fields"
+                                          cssClass="e-outline"
+                                          floatLabelType="Auto"
+                                          showClearButton="true"
+                                          placeholder="Select OS Type"></ejs-dropdownlist>
+                    </div>
+                    <div class="col-md-4">
+                       
+                        <ejs-dropdownlist id="DbTypeId"
+                                          dataSource="@ViewData["DbTypeId"]"
+                                          asp-for="DbTypeId"
+                                          fields="@ViewBag.fields"
+                                          cssClass="e-outline"
+                                          floatLabelType="Auto"
+                                          showClearButton="true"
+                                          placeholder="Select Database Type"></ejs-dropdownlist>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ejs-textbox id="Name"
+                                     placeholder="Application Name"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="Name"></ejs-textbox>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <ejs-textbox id="EndUser"
+                                     placeholder="End User"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="EndUser"></ejs-textbox>
+                        <span asp-validation-for="EndUser" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ejs-textbox id="AppUrl"
+                                     placeholder="Application URL"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="AppUrl"></ejs-textbox>
+                        <span asp-validation-for="AppUrl" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <ejs-textbox id="ApplicationServer"
+                                     placeholder="Application Server"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="ApplicationServer"></ejs-textbox>
+                        <span asp-validation-for="ApplicationServer" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <ejs-textbox id="DatabaseServer"
+                                     placeholder="Database Server"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="DatabaseServer"></ejs-textbox>
+                        <span asp-validation-for="DatabaseServer" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ejs-textbox id="DatabaseName"
+                                     placeholder="Database Name"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="DatabaseName"></ejs-textbox>
+                        <span asp-validation-for="DatabaseName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ejs-textbox id="SchemaName"
+                                     placeholder="Schema Name"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="SchemaName"></ejs-textbox>
+                        <span asp-validation-for="SchemaName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ejs-textbox id="LogInType"
+                                     placeholder="Login Type"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="LogInType"></ejs-textbox>
+                        <span asp-validation-for="LogInType" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <ejs-textbox id="Technologies"
+                                     placeholder="Technologies"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="Technologies"></ejs-textbox>
+                        <span asp-validation-for="Technologies" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ejs-dropdownlist id="UserId"
+                                          dataSource="@ViewBag.Users"
+                                          fields="@ViewBag.fields"
+                                          placeholder="Primary Developer"
+                                          cssClass="e-outline"
+                                          floatLabelType="Auto"
+                                          showClearButton="true"
+                                          asp-for="UserId"></ejs-dropdownlist>
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <ejs-textbox id="Developers"
+                                     placeholder="Additional Developers"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     multiline="true"
+                                     asp-for="Developers"></ejs-textbox>
+                        <span asp-validation-for="Developers" class="text-danger"></span>
+                    </div>
+                   
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <ejs-textbox id="SourceCodeUrl"
+                                     placeholder="Source Code URL"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="SourceCodeUrl"></ejs-textbox>
+                        <span asp-validation-for="SourceCodeUrl" class="text-danger"></span>
+                    </div>
+                </div>
+
+            
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ejs-textbox id="UserManual"
+                                     placeholder="User Manual"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="UserManual"></ejs-textbox>
+                        <span asp-validation-for="UserManual" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <ejs-textbox id="SupportTeam"
+                                     placeholder="Support Team"
+                                     cssClass="e-outline"
+                                     floatLabelType="Auto"
+                                     showClearButton="true"
+                                     asp-for="SupportTeam"></ejs-textbox>
+                        <span asp-validation-for="SupportTeam" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Replace the current DocumentationFiles section with this in your Create.cshtml -->
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Documentation Files</h5>
+            </div>
+            <div class="card-body">
+                <!-- Since it's a new application, we don't need to show current files -->
+
+                <!-- Upload Files -->
+                <div>
+                    <h6>Upload Files</h6>
+                    <ejs-uploader id="DocumentationFiles"
+                                 name="DocumentationFiles"
+                                 multiple="true"
+                                 autoUpload="false"
+                                 allowedExtensions=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
+                    </ejs-uploader>
+                    <small class="text-muted">Allowed file types: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Notes</h5>
+                            </div>
+                            <div class="card-body">
+                                <ejs-textbox id="Notes"
+                                             placeholder="Add notes about this application..."
+                                             cssClass="e-outline"
+                                             floatLabelType="Auto"
+                                             multiline="true"
+                                             showClearButton="true"
+                                             asp-for="Notes"></ejs-textbox>
+                                <small class="text-muted">Use this area to add important information, details, or context about the application.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <ejs-button id="submitButton" content="Create" isPrimary="true"></ejs-button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Syncfusion Controls Styling */
+    .e-outline {
+        background-color: white !important;
+    }
+
+    .e-input-group {
+        background-color: white !important;
+    }
+
+    /* Additional style for multiline textbox */
+    #Developers {
+        min-height: 80px !important;
+    }
+    
+    .e-multiline .e-input-group {
+        height: auto !important;
+    }
+    
+    /* Upload styling */
+    .e-upload {
+        border: 1px dashed #ccc;
+        border-radius: 4px;
+        padding: 10px;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
