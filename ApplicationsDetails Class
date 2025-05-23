@@ -1,0 +1,61 @@
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LogBook.Models;
+public class ApplicationsDetails : AuditableEntity
+{
+    [Required]
+    public int Id { get; set; }
+    [Required]
+    public int AppCatId { get; set; }
+    [Required]
+    public int OsTypeId { get; set; }
+    [Required]
+    public int DbTypeId { get; set; }
+    [Required]
+    public int UserId { get; set; }  // The user who created/owns the application
+    public string Name { get; set; } = null!;
+    public string EndUser { get; set; } = null!;
+    public string AppUrl { get; set; } = null!;
+    public string ApplicationServer { get; set; } = null!;
+    public string DatabaseServer { get; set; } = null!;
+    public string DatabaseName { get; set; } = null!;
+    public string SchemaName { get; set; } = null!;
+    public string LogInType { get; set; } = null!;
+    public string Technologies { get; set; } = null!;
+    public string? Developers { get; set; } = string.Empty;  // Free text field for additional developers
+    public string SupportTeam { get; set; } = null!;
+    public string SourceCodeUrl { get; set; } = null!;
+    public string? DocumentationUrl { get; set; }
+    // Add this property to your ApplicationsDtl class
+    public string? Notes { get; set; } 
+    public string? UserManual { get; set; }
+    [ForeignKey("UserId")]
+    public virtual User? User { get; set; }
+    [ForeignKey("AppCatId")]
+    public virtual AppCategoryMst? AppCategoryMsts { get; set; }
+    [ForeignKey("DbTypeId")]
+    public virtual DbTypesMst? DbTypesMsts { get; set; }
+    [ForeignKey("OsTypeId")]
+    public virtual OsTypesMst? OsTypesMsts { get; set; }
+
+    // We can keep a version of DeveloperIds for backward compatibility
+    // But it will now be deprecated and always return an empty list
+    [NotMapped]
+    [Obsolete("This property is deprecated as Developers is now a free text field.")]
+    public List<int> DeveloperIds
+    {
+        get => new List<int>(); // Always return empty list
+        set { } // Do nothing with the value
+    }
+
+    // Replace DevelopersList with a string property that just returns the Developers value
+    [NotMapped]
+    public List<User>? DevelopersList { get; set; } = new List<User>();
+
+    [NotMapped]
+    public List<IFormFile> DocumentationFiles { get; set; } = new List<IFormFile>();
+
+    public virtual ICollection<DocumentationFile> DocumentationFilesList { get; set; } = new List<DocumentationFile>();
+}
